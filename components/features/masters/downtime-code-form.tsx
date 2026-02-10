@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@/hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { downtimeCodeSchema, DowntimeCodeFormData } from '@/lib/schemas/masterSchemas';
 import { useMasterStore } from '@/lib/stores/masterStore';
 import { Button } from '@/components/ui/button';
