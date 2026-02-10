@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
-import { zodResolver } from '@/hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { productionLogSchema, ProductionLogFormData } from '@/lib/schemas/productionSchemas';
 import { useProductionStore } from '@/lib/stores/productionStore';
 import { useMasterStore } from '@/lib/stores/masterStore';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Form } from '@/components/ui/form';  // ← ADD THIS IMPORT
 import { RawMaterialStep } from './raw-material-step';
 import { FurnaceStep } from './furnace-step';
 import { ProductionRunStep } from './production-run-step';
@@ -71,15 +72,15 @@ export function ProductionWizard() {
     addProductionLog({
       ...data,
       shiftName: selectedShift?.name || '',
-      rawMaterials: data.rawMaterials.map((rm, idx) => ({
+      rawMaterials: data.rawMaterials.map((rm) => ({
         id: crypto.randomUUID(),
         ...rm,
       })),
-      furnaceLogs: data.furnaceLogs.map((fl, idx) => ({
+      furnaceLogs: data.furnaceLogs.map((fl) => ({
         id: crypto.randomUUID(),
         ...fl,
       })),
-      productionRuns: data.productionRuns.map((pr, idx) => {
+      productionRuns: data.productionRuns.map((pr) => {
         const product = useMasterStore.getState().products.find((p) => p.id === pr.productId);
         return {
           id: crypto.randomUUID(),
@@ -110,36 +111,38 @@ export function ProductionWizard() {
           <CardTitle>Production Log Entry - Step {step} of 3</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            {step === 1 && <RawMaterialStep form={form} />}
-            {step === 2 && <FurnaceStep form={form} />}
-            {step === 3 && <ProductionRunStep form={form} />}
-            
-            <YieldSummary
-              totalInput={totalInput}
-              totalOutput={totalOutput}
-              burningLoss={burningLoss}
-              burningLossPercent={burningLossPercent}
-              yieldPercent={yieldPercent}
-            />
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              {step === 1 && <RawMaterialStep form={form} />}
+              {step === 2 && <FurnaceStep form={form} />}
+              {step === 3 && <ProductionRunStep form={form} />}
+              
+              <YieldSummary
+                totalInput={totalInput}
+                totalOutput={totalOutput}
+                burningLoss={burningLoss}
+                burningLossPercent={burningLossPercent}
+                yieldPercent={yieldPercent}
+              />
 
-            <div className="flex justify-between mt-6">
-              {step > 1 && (
-                <Button type="button" variant="outline" onClick={() => setStep(step - 1)}>
-                  Previous
-                </Button>
-              )}
-              {step < 3 ? (
-                <Button type="button" onClick={() => setStep(step + 1)} className="ml-auto">
-                  Next
-                </Button>
-              ) : (
-                <Button type="submit" className="ml-auto" disabled={burningLoss < 0}>
-                  Submit Log
-                </Button>
-              )}
-            </div>
-          </form>
+              <div className="flex justify-between mt-6">
+                {step > 1 && (
+                  <Button type="button" variant="outline" onClick={() => setStep(step - 1)}>
+                    Previous
+                  </Button>
+                )}
+                {step < 3 ? (
+                  <Button type="button" onClick={() => setStep(step + 1)} className="ml-auto">
+                    Next
+                  </Button>
+                ) : (
+                  <Button type="submit" className="ml-auto" disabled={burningLoss < 0}>
+                    Submit Log
+                  </Button>
+                )}
+              </div>
+            </form>
+          </Form>
         </CardContent>
       </Card>
     </div>
