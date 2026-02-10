@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { downtimeLogSchema, DowntimeLogFormData } from '@/lib/schemas/downtimeSchemas';
@@ -239,7 +239,7 @@ export function DowntimeForm() {
 
                       <div className="flex items-end gap-2">
                         <div className="flex-1">
-                          <FormLabel className="text-xs">Duration</FormLabel>
+                          <label className="text-xs font-medium text-muted-foreground">Duration</label>
                           <div className="text-sm font-medium mt-2">
                             {eventsWithDuration[index]?.durationMinutes || 0} min
                           </div>
