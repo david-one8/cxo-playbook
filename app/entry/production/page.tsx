@@ -1,9 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { ProductionEntrySkeleton } from '@/components/shared/loading-skeleton';
 import { ProductionWizard } from '@/components/features/production/production-wizard';
 
 export default function ProductionEntryPage() {
+  // Loading state
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // Show skeleton for 500ms
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show skeleton while loading
+  if (isLoading) {
+    return <ProductionEntrySkeleton />;
+  }
+
+  // Render actual page content
   return (
     <div className="space-y-6">
       <div>
