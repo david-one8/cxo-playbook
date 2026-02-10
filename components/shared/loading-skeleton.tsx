@@ -127,19 +127,50 @@ export function StatCardsSkeleton() {
   );
 }
 
-// Master data table skeleton
+// Master Data Management skeleton (with tabs + table)
 export function MasterDataSkeleton() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-10 w-32" />
+      {/* Header */}
+      <div>
+        <Skeleton className="h-9 w-96 mb-2" />
+        <Skeleton className="h-5 w-[450px]" />
       </div>
-      <div className="border rounded-lg p-6 bg-card">
-        <div className="space-y-3">
-          <Skeleton className="h-10 w-full" />
-          {[1, 2, 3, 4].map((i) => (
-            <Skeleton key={i} className="h-12 w-full" />
+
+      {/* Tabs */}
+      <div className="flex gap-2 border-b">
+        <Skeleton className="h-10 w-24 mb-[-1px]" />
+        <Skeleton className="h-10 w-20 mb-[-1px]" />
+        <Skeleton className="h-10 w-36 mb-[-1px]" />
+      </div>
+
+      {/* Card */}
+      <div className="border rounded-lg bg-card">
+        {/* Card Header with button */}
+        <div className="flex items-start justify-between p-6 pb-4">
+          <div className="space-y-2">
+            <Skeleton className="h-7 w-48" />
+            <Skeleton className="h-4 w-80" />
+          </div>
+          <Skeleton className="h-10 w-36 rounded-md" />
+        </div>
+
+        {/* Table */}
+        <div className="px-6 pb-6">
+          {/* Table Header */}
+          <div className="flex gap-4 pb-3 border-b mb-3">
+            <Skeleton className="h-4 w-20" />
+            <Skeleton className="h-4 w-32 flex-1" />
+            <Skeleton className="h-4 w-20" />
+          </div>
+
+          {/* Table Rows */}
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex gap-4 items-center py-3 border-b">
+              <Skeleton className="h-5 w-24" />
+              <Skeleton className="h-5 w-48 flex-1" />
+              <Skeleton className="h-9 w-9 rounded" />
+            </div>
           ))}
         </div>
       </div>

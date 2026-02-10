@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { MasterDataSkeleton } from '@/components/shared/loading-skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,9 +29,16 @@ import {
 import { Badge } from '@/components/ui/badge';
 
 export default function MastersPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const { products, shifts, downtimeCodes, deleteProduct, deleteShift, deleteDowntimeCode } =
     useMasterStore();
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 600);
+  }, []);
+
+  if (isLoading) return <MasterDataSkeleton />;
 
   return (
     <div className="space-y-6">
