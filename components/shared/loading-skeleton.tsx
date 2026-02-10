@@ -177,3 +177,148 @@ export function MasterDataSkeleton() {
     </div>
   );
 }
+
+// ✅ NEW: Downtime Entry skeleton
+export function DowntimeEntrySkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <Skeleton className="h-10 w-64 mb-2" />
+        <Skeleton className="h-5 w-[600px]" />
+      </div>
+
+      {/* Form Card */}
+      <div className="border rounded-lg p-6 bg-card space-y-6">
+        <Skeleton className="h-7 w-56" />
+
+        {/* Date and Shift fields */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-16" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-16" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+        </div>
+
+        {/* Downtime Events Section */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <Skeleton className="h-6 w-48" />
+            <Skeleton className="h-10 w-32" />
+          </div>
+
+          {/* Empty state placeholder */}
+          <div className="border border-dashed rounded-lg p-8">
+            <Skeleton className="h-4 w-96 mx-auto" />
+          </div>
+        </div>
+
+        {/* Summary Cards */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-950">
+            <Skeleton className="h-4 w-32 mb-2" />
+            <Skeleton className="h-8 w-24" />
+          </div>
+          <div className="p-4 border rounded-lg bg-red-50 dark:bg-red-950">
+            <Skeleton className="h-4 w-32 mb-2" />
+            <Skeleton className="h-8 w-20" />
+          </div>
+          <div className="p-4 border rounded-lg bg-green-50 dark:bg-green-950">
+            <Skeleton className="h-4 w-32 mb-2" />
+            <Skeleton className="h-8 w-24" />
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <Skeleton className="h-10 w-full rounded-md" />
+      </div>
+    </div>
+  );
+}
+
+// ✅ NEW: Production Entry skeleton (wizard form)
+export function ProductionEntrySkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <Skeleton className="h-10 w-64 mb-2" />
+        <Skeleton className="h-5 w-[550px]" />
+      </div>
+
+      {/* Form Card */}
+      <div className="border rounded-lg bg-card">
+        {/* Card Header */}
+        <div className="p-6 border-b">
+          <Skeleton className="h-6 w-72" />
+        </div>
+
+        {/* Card Content */}
+        <div className="p-6 space-y-6">
+          {/* Date field */}
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-16" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+
+          {/* Shift field */}
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-16" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+
+          {/* Section Header */}
+          <div className="flex items-center justify-between">
+            <Skeleton className="h-6 w-48" />
+            <Skeleton className="h-10 w-32" />
+          </div>
+
+          {/* Form fields row (3 columns + action) */}
+          <div className="grid grid-cols-4 gap-4 p-4 border rounded-lg bg-card">
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-20" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-28" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+            <div className="flex items-end">
+              <Skeleton className="h-10 w-10 rounded" />
+            </div>
+          </div>
+
+          {/* Summary Cards */}
+          <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-8 w-32" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-28" />
+              <Skeleton className="h-8 w-32" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-20" />
+              <Skeleton className="h-8 w-24" />
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-between">
+            <Skeleton className="h-10 w-24" />
+            <Skeleton className="h-10 w-20" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
