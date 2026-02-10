@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useProductionStore } from '@/lib/stores/productionStore';
 import { StatCard } from '@/components/shared/stat-card';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { DashboardSkeleton } from '@/components/shared/loading-skeleton'; // ✅ ADD THIS
 import { 
   BarChart, 
   Bar, 
@@ -32,6 +33,24 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export default function DashboardPage() {
   const { productionLogs, downtimeLogs } = useProductionStore();
+
+  //Loading state
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800); // Show skeleton for 800ms
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  //  Show skeleton while loading
+  if (isLoading) {
+    return <DashboardSkeleton />;
+  }
+
   const recentLogs = productionLogs.slice(-5).reverse();
   const allLogs = productionLogs;
 
